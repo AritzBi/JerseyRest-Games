@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="deploy" name="RESTful Eclipse Project">
+	<property environment="env"/>
+	<property name="tomcat.home" value="${env.TOMCAT_HOME}"/>
+	<property name="project.file" value="es.deusto.gamesubscription.rest"/>
+    <property name="source.dir" value="src"/>
+    <property name="build.dir" value="bin"/>
+	<property name="conf.dir" value="conf"/>
+	<property name="web-inf.dir" value="WebContent\WEB-INF"/>
+    <property name="lib.dir" value="${web-inf.dir}\lib"/>
+    <property name="dist.dir" value="dist"/>
+    
+	<path id="classpath">
+        <pathelement path="${build.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+	
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+	
+    <target name="prepare">
+    	<mkdir dir="${build.dir}"/>
+    	<mkdir dir="${dist.dir}"/>
+    </target>
+ 
+    <target name="build" depends="prepare">
+        <javac srcdir="${source.dir}" debug="true" destdir="${build.dir}" deprecation="true" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+    </target>
+	
+    <target name="war">
+		<war warfile="${dist.dir}/${project.file}.war" webxml="${web-inf.dir}/web.xml">
+			<classes dir="${build.dir}"/>
+	    	<lib dir="${lib.dir}"/>
+			<fileset dir="WebContent"/>
+		</war>
+    </target>
+	
+	<target name="deploy" depends="war">
+		<copy file="${dist.dir}/${project.file}.war" todir="${tomcat.home}/webapps"/>
+    </target>
+	
+	<target name="undeploy">
+		<delete file="${tomcat.home}/webapps/${project.file}.war"/>
+		<delete dir="${tomcat.home}/webapps/${project.file}"/>
+    </target>
+	
+    <target name="help">
+		<echo>Usage: ant [prepare | build | war | deploy | undeploy | clean]</echo>
+	</target>
+</project>
