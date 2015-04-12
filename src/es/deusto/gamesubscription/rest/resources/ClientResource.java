@@ -39,7 +39,7 @@ private String id;
 	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Response putClient(@Context UriInfo uriInfo, Client client) {
 		Response res;
-		if (!id.equals(client.getId())){
+		if (!id.equals(String.valueOf(client.getId() ) ) ){
 			res = Response.status(409).entity("Put: Client with " + client.getId() +  " does not match with current client").build();
 		}else{
 			res = Response.noContent().build(); // Code: 204

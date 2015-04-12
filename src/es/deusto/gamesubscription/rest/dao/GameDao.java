@@ -18,7 +18,7 @@ import es.deusto.gamesubscription.rest.model.SubscriptionUser;
 public class GameDao {
 private Connection con;
     
-    private String dataSource = "//localhost/games";
+    private String dataSource = "//52.16.130.245:3306/games";
     private String username = "root";
     private String password = "toor";
     private String driver = "com.mysql.jdbc.Driver";
@@ -278,6 +278,7 @@ private Connection con;
 	    	prest.setString(3, client.getDni());
 	    	prest.setString(4, client.getAddress());
 	    	prest.setString(5, client.getTel_number());
+	    	prest.setLong(6, client.getId());
 	    	prest.executeUpdate();
 	    	prest.close();
 		} catch (SQLException e) {
@@ -301,6 +302,7 @@ private Connection con;
         Subscription subscription=null;
         while (rs.next()){
         	subscription = new Subscription();
+        	subscription.setId(rs.getLong("id_sus"));
         	subscription.setName(rs.getString("name"));
         	subscription.setDescription(rs.getString("description"));
         	subscription.setPrice(rs.getInt("price"));
@@ -355,6 +357,27 @@ private Connection con;
     	
     }
     
+    public int modifySubscription(Subscription subscription) throws SQLException, ClassNotFoundException{
+    	this.conectar();
+    	String query="update TIPO_SUS set name=?, description=?, price=? where id_sus=?";
+    	PreparedStatement prest;
+		try {
+			prest = con.prepareStatement(query);
+	    	prest.setString(1, subscription.getName());
+	    	prest.setString(2, subscription.getDescription());
+	    	prest.setDouble(3, subscription.getPrice());
+	    	prest.setLong(4, subscription.getId());
+	    	prest.executeUpdate();
+	    	prest.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			this.desconectar();
+			return -1;
+		}
+		this.desconectar();
+    	return 1;
+    }
+    
     public int deleteSubscriptionClient(long id, long id2) throws ClassNotFoundException, SQLException {
     	this.conectar();
     	String query="delete from SUS where id_sus=? and id_client=?";
@@ -372,6 +395,29 @@ private Connection con;
 		}
 		this.desconectar();
     	return 1;
+    	
+    }
+    
+    
+    public int createSubscription(long idCliente, long idSubsripcion) throws ClassNotFoundException, SQLException {
+    	this.conectar();
+    	String query="insert into SUS(id_sus,id_client) values('" + idSubsripcion + "','" + idCliente + "');";
+    	PreparedStatement prest;
+		prest = con.prepareStatement(query);
+    	prest.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        ResultSet generatedKeys = prest.getGeneratedKeys();
+        
+        if (generatedKeys.next()) {
+        	long key=generatedKeys.getLong(1);
+        	prest.close();
+            this.desconectar();
+            return (int)key;
+        }
+        else {
+        	prest.close();        
+            this.desconectar();
+            return -1;
+        }
     	
     }
     

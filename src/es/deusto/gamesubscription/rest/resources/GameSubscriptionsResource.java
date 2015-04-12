@@ -14,10 +14,13 @@ public class GameSubscriptionsResource {
 	UriInfo uriInfo;
 	@Context
 	Request request;
+	
 	@Path("{subscription}")
 	public GameSubscriptionResource deleteSubscription(
 			@PathParam("subscription") String id) throws NumberFormatException, ClassNotFoundException, SQLException {
 		return new GameSubscriptionResource(Long.parseLong(id));
 	}
+	
+
 
 }
