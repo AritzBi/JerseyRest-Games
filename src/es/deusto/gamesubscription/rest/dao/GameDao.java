@@ -18,7 +18,7 @@ import es.deusto.gamesubscription.rest.model.SubscriptionUser;
 public class GameDao {
 private Connection con;
     
-    private String dataSource = "//52.16.130.245:3306/games";
+    private String dataSource = "//localhost/games";
     private String username = "root";
     private String password = "toor";
     private String driver = "com.mysql.jdbc.Driver";
