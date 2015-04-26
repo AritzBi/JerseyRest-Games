@@ -99,7 +99,7 @@ public class GameResource {
 	@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Response newSubscription(@Context UriInfo uriInfo, Subscription subscription) throws ClassNotFoundException, IllegalArgumentException, UriBuilderException, SQLException {
 		Response res;
-		if ( (Long)subscription.getId() != null )
+		if ( (Long)subscription.getId() != null && subscription.getId() != 0 )
 		{
 			res = Response.status(409).entity("Post: Subscription with " + subscription.getId() +  " already exists").build();
 		}
