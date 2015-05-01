@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="es.deusto.gamesubscription.rest.model.Client" alias="Client"/>
+		<typeAlias type="es.deusto.gamesubscription.rest.model.Game" alias="Game"/>
+		<typeAlias type="es.deusto.gamesubscription.rest.model.Subscription" alias="Subscription"/>
+		<typeAlias type="es.deusto.gamesubscription.rest.model.SubscriptionUser" alias="SubscriptionUser"/>
+	</typeAliases>
+
+	<environments default="development">
+    	<environment id="development">
+      		<transactionManager type="JDBC"/>
+      		<dataSource type="POOLED">
+        		<property name="driver" value="com.mysql.jdbc.Driver"/>
+        		<property name="url" value="jdbc:mysql://52.16.130.245/games"/>
+        		<property name="username" value="root"/>
+        		<property name="password" value="toor"/>
+      		</dataSource>
+    	</environment>
+	</environments>
+
+	<mappers>
+  		<mapper resource="data/GameMapper.xml"/>
+  		<mapper resource="data/ClientMapper.xml"/>
+  		<mapper resource="data/SubscriptionMapper.xml"/>
+  		<mapper resource="data/SubscriptionUserMapper.xml"/>
+	</mappers>
+		
+</configuration>

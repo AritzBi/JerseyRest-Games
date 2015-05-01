@@ -9,6 +9,7 @@ public class Subscription {
 	private String name;
 	private String description;
 	private double price;
+	private int idGame;
 	
 	private static int POSITION_ID = 0;
 	private static int POSITION_NAME = 1;
@@ -39,6 +40,12 @@ public class Subscription {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public int getIdGame() {
+		return idGame;
+	}
+	public void setIdGame(int idGame) {
+		this.idGame = idGame;
+	}
 	
 	public Object[] getObjectArray ()
 	{
@@ -49,5 +56,13 @@ public class Subscription {
 		objeto[POSITION_PRICE] = price;
 		
 		return objeto;
+	}
+	
+	public String toString()
+	{
+		return "Subscripcion con id " + getId() + "\n" +
+					"Nombre " + getName() + "\n" +
+						"Descripcion " + getDescription() + "\n" +
+							"Precio " + getPrice() + "\n";
 	}
 }

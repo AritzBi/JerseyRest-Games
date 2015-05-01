@@ -63,6 +63,13 @@ public class Game {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	public String toString()
+	{
+		return "Juego con id " + getId() + "\n" +
+					"Nombre " + getName() + "\n" +
+						"Descripcion " + getDescription() + "\n" +
+							"Age " + getAge() + "\n" +
+									"Type " + getType() + "\n";
+	}
 	
 }

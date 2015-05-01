@@ -64,6 +64,13 @@ public class Client {
 	public void setTel_number(String tel_number) {
 		this.tel_number = tel_number;
 	}
-	
-	
+	public String toString()
+	{
+		return "Cliente con id " + getId() + "\n" +
+					"DNI " + getDni() + "\n" +
+						"Calle " + getAddress() + "\n" +
+							"Nombre " + getName() + "\n" +
+									"Apellidos " + getSurname() + "\n" +
+											"Telefono " + getTel_number() + "\n";
+	}
 }
