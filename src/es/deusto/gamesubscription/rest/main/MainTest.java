@@ -45,6 +45,7 @@ public class MainTest {
 		if (subscriptionUserDAO.deleteSubscritor(ID_CLIENT, ID_SUBSCRIPTION) ) {
 			System.out.println("Borrado correctamente subscritor con id "+ ID_CLIENT + " para la subscripcion " + ID_SUBSCRIPTION);
 		}
+		System.out.println("*******************");
 	}
 
 	private static void checkSubscriptionMethods() {
@@ -82,7 +83,7 @@ public class MainTest {
 			System.out.println("Borrado correctamente subscripcion con id "
 					+ subscriptionId);
 		}
-
+		System.out.println("*******************");
 	}
 
 	private static void checkGameMethods() {
@@ -125,6 +126,7 @@ public class MainTest {
 		// [SELECT: todos los juegos]
 		List<Game> games = gamesDAO.findAll();
 		System.out.println("Juegos recuperados: " + games);
+		System.out.println("*******************");
 	}
 
 	private static void checkClientMethods() {
@@ -176,5 +178,7 @@ public class MainTest {
 		// [SELECT: todos los clientes]
 		List<Client> clientes = clientDAO.findAll();
 		System.out.println("Clientes recuperados: " + clientes);
+		
+		System.out.println("*******************");
 	}
 }
