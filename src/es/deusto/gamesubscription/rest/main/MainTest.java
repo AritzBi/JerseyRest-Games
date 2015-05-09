@@ -34,18 +34,31 @@ public class MainTest {
 
 		// [INSERCION: nuevo subscritor]
 		if (subscriptionUserDAO.insertSubscritor(ID_CLIENT, ID_SUBSCRIPTION)) {
-			System.out.println("Inserción correcta de un nuevo subscriptor con id " + ID_CLIENT  + " para la subscripcion " + ID_SUBSCRIPTION);
+			System.out
+					.println("Inserción correcta de un nuevo subscriptor con id "
+							+ ID_CLIENT
+							+ " para la subscripcion "
+							+ ID_SUBSCRIPTION);
 		}
-		
-		//[SELECT: subscritores de una subscripcion]
-		List<SubscriptionUser> subscriptors = subscriptionUserDAO.findSubscriptrorsBySubscriptionId(ID_SUBSCRIPTION);
-		System.out.println("Clientes de subscripcion " + ID_SUBSCRIPTION + subscriptors);
-		
-		//[DELETE: nuevo subsritor]
-		if (subscriptionUserDAO.deleteSubscritor(ID_CLIENT, ID_SUBSCRIPTION) ) {
-			System.out.println("Borrado correctamente subscritor con id "+ ID_CLIENT + " para la subscripcion " + ID_SUBSCRIPTION);
+
+		// [SELECT: subscritores de una subscripcion]
+		List<SubscriptionUser> subscriptors = subscriptionUserDAO
+				.findSubscriptrorsBySubscriptionId(ID_SUBSCRIPTION);
+		System.out.println("Clientes de subscripcion " + ID_SUBSCRIPTION + " "
+				+ subscriptors);
+
+		// [DELETE: nuevo subsritor]
+		if (subscriptionUserDAO.deleteSubscritor(ID_CLIENT, ID_SUBSCRIPTION)) {
+			System.out.println("Borrado correctamente subscriptor con id "
+					+ ID_CLIENT + " para la subscripcion " + ID_SUBSCRIPTION);
 		}
-		System.out.println("*******************");
+
+		// [SELECT: subscritores de una subscripcion]
+		subscriptors = subscriptionUserDAO
+				.findSubscriptrorsBySubscriptionId(ID_SUBSCRIPTION);
+		System.out.println("Clientes de subscripcion " + ID_SUBSCRIPTION + " "
+				+ subscriptors);
+		System.out.println("*****USER SUBSCRIPTIONS FINALIZADO**********\n");
 	}
 
 	private static void checkSubscriptionMethods() {
@@ -62,13 +75,15 @@ public class MainTest {
 
 		if (subscriptionDAO.insertSubscription(subscription)) {
 			System.out.println("Inserción correcta de la subscripcion con id "
-					+ subscription.getId());
+					+ subscription.getId() + " para el juego "
+					+ ID_JUEGO_PRUEBA);
 		}
 
 		// [SELECT: subscripciones del juego]
 		List<Subscription> subscriptions = subscriptionDAO
 				.findSubscriptionsByIdGame(ID_JUEGO_PRUEBA);
-		System.out.println("Subscripciones del juego: " + subscriptions);
+		System.out.println("Subscripciones del juego " + ID_JUEGO_PRUEBA
+				+ " : " + subscriptions);
 
 		// [UPDATE: subscripcion actualizado]
 		subscription.setDescription("For Standard Users Rate");
@@ -83,7 +98,13 @@ public class MainTest {
 			System.out.println("Borrado correctamente subscripcion con id "
 					+ subscriptionId);
 		}
-		System.out.println("*******************");
+
+		// [SELECT: subscripciones del juego]
+		subscriptions = subscriptionDAO
+				.findSubscriptionsByIdGame(ID_JUEGO_PRUEBA);
+		System.out.println("Subscripciones del juego " + ID_JUEGO_PRUEBA
+				+ " : " + subscriptions);
+		System.out.println("*******SUBSCRIPTIONS FINALIZADO************\n");
 	}
 
 	private static void checkGameMethods() {
@@ -126,7 +147,7 @@ public class MainTest {
 		// [SELECT: todos los juegos]
 		List<Game> games = gamesDAO.findAll();
 		System.out.println("Juegos recuperados: " + games);
-		System.out.println("*******************");
+		System.out.println("*******GAMES FINALIZADO************\n");
 	}
 
 	private static void checkClientMethods() {
@@ -148,12 +169,12 @@ public class MainTest {
 
 		// [SELECT: cliente insertado por id]
 		Client clienteInsertado = clientDAO.getClientById(cliente.getId());
-		System.out.println("*** SELECT BY ID *** ");
+		System.out.println("*** SELECT BY ID *** (" + cliente.getId() + ")");
 		System.out.println(clienteInsertado);
 
 		// [SELECT: cliente insertado por DNI]
 		clienteInsertado = clientDAO.getClientByDNI(cliente.getDni());
-		System.out.println("*** SELECT BY DNI *** ");
+		System.out.println("*** SELECT BY DNI *** (" + cliente.getDni() + ")");
 		System.out.println(clienteInsertado);
 
 		// [UPDATE: cliente insertado]
@@ -178,7 +199,7 @@ public class MainTest {
 		// [SELECT: todos los clientes]
 		List<Client> clientes = clientDAO.findAll();
 		System.out.println("Clientes recuperados: " + clientes);
-		
-		System.out.println("*******************");
+
+		System.out.println("******CLIENTES FINALIZADO*************\n");
 	}
 }
