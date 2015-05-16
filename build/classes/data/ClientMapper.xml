@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.deusto.gamesubscriptions.rest.ClientMapper">
+
+	<select	id="getClientById" parameterType="int" resultType="Client">
+		SELECT id_client as id, name, surname, dni, address, tel_number FROM CLIENTS WHERE id_client=#{id}
+	</select>
+	
+	<select	id="getClientByDNI" parameterType="String" resultType="Client">
+		SELECT id_client as id, name, surname, dni, address, tel_number FROM CLIENTS WHERE dni=#{dni}
+	</select>
+
+	<select	id="findAllClients" resultType="Client">
+		SELECT id_client as id, name, surname, dni, address, tel_number FROM CLIENTS
+	</select>
+	
+	<insert id="insertClient" parameterType="Client" useGeneratedKeys="true">
+		INSERT INTO CLIENTS(name,surname,dni,address,tel_number) VALUES ( #{name}, #{surname}, #{dni}, #{address}, #{tel_number} )
+		
+		 <selectKey keyProperty="id" resultType="int" order="AFTER">
+	            SELECT LAST_INSERT_ID();
+	      </selectKey>
+	</insert>
+	
+	<update id="updateClient" parameterType="Client">
+		UPDATE CLIENTS SET NAME=#{name}, SURNAME=#{surname}, DNI=#{dni}, ADDRESS=#{address}, TEL_NUMBER=#{tel_number}
+		WHERE ID_CLIENT=#{id}
+	</update>
+	
+	<delete id="deleteByIdClient" parameterType="int">
+		DELETE FROM CLIENTS WHERE id_client=#{id}
+	</delete>
+</mapper>

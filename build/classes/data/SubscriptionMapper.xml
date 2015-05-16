@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.deusto.gamesubscriptions.rest.SubscriptionMapper">
+
+	<select	id="findSubscriptionsByIdGame" parameterType="int" resultType="Subscription">
+		SELECT id_sus as id, name, description, price from TIPO_SUS where id_game=#{id}
+	</select>
+	
+	<insert id="insertSubscription" parameterType="Subscription" useGeneratedKeys="true">
+		INSERT INTO TIPO_SUS(name,description,price,id_game) VALUES ( #{name}, #{description}, #{price}, #{idGame} )
+		  
+		  <selectKey keyProperty="id" resultType="int" order="AFTER">
+	            SELECT LAST_INSERT_ID();
+	      </selectKey>
+	</insert>
+	
+	<update id="updateSubscription" parameterType="Subscription">
+		UPDATE TIPO_SUS SET NAME=#{name}, DESCRIPTION=#{description}, PRICE=#{price}
+		WHERE ID_SUS=#{id}
+	</update>
+	
+	<delete id="deleteByIdSubscription" parameterType="long">
+		DELETE FROM TIPO_SUS WHERE ID_SUS=#{id}
+	</delete>
+</mapper>

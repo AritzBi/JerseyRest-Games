@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.deusto.gamesubscriptions.rest.GameMapper">
+
+	<select	id="getGameById" parameterType="int" resultType="Game">
+		SELECT id_game as id, name, age, type, description FROM GAMES WHERE id_game=#{id}
+	</select>
+
+	<select	id="findAllGames" resultType="Game">
+		SELECT id_game as id, name, age, type, description FROM GAMES
+	</select>
+	
+	<insert id="insertGame" parameterType="Game" useGeneratedKeys="true">
+		INSERT INTO GAMES(name,description,type,age) VALUES ( #{name}, #{description}, #{type}, #{age} )
+		  
+		  <selectKey keyProperty="id" resultType="int" order="AFTER">
+	            SELECT LAST_INSERT_ID();
+	      </selectKey>
+	</insert>
+	
+	<update id="updateGame" parameterType="Game">
+		UPDATE GAMES SET NAME=#{name}, DESCRIPTION=#{description}, AGE=#{age}, TYPE=#{type}
+		WHERE ID_GAME=#{id}
+	</update>
+	
+	<delete id="deleteByIdGame" parameterType="int">
+		DELETE FROM GAMES WHERE ID_GAME=#{id}
+	</delete>
+</mapper>
