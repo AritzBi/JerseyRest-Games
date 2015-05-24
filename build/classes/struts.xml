@@ -5,23 +5,45 @@
 <struts>
 
     <constant name="struts.devMode" value="true" />
-    <package name="default" extends="struts-default">
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    
+    <package name="default" namespace = "/" extends="struts-default">
 		<default-interceptor-ref name="paramsPrepareParamsStack"/>
 
-        <action name="doLogin" class="es.deusto.gamesubscription.actions.LoginAction">
+        <action name="doLogin" class="es.deusto.gamesubscription.rest.actions.LoginAction">
             <result>/jsp/index.jsp</result>
         </action>
         
-        <action name="games" class="es.deusto.gamesubscription.actions.GamesAction" method="listing">
+       <action name="games" class="es.deusto.gamesubscription.rest.actions.GamesAction" method="listing">
+        	<result name="insertGame">/jsp/gameForm.jsp</result>
+        	<result name="successInsertGame" type="redirectAction">games</result>
+        	<result name="editGame">/jsp/gameForm.jsp</result>
         	<result>/jsp/games.jsp</result>
         </action>
         
-        <action name="searchGame" class="es.deusto.gamesubscription.actions.GamesAction" method="getGame">
-        	<result>/jsp/games.jsp</result>
+        <action name="editGame" class="es.deusto.gamesubscription.rest.actions.GamesAction" method="editGame">
+        	<result name="editGame">/jsp/gameForm.jsp</result>
+        	<result type="redirectAction">games</result>
         </action>
         
-        <action name="insertGame" class="es.deusto.gamesubscription.actions.GamesAction" method="insert">
-        	<result>/jsp/games.jsp</result>
+        <action name="deleteGame" class="es.deusto.gamesubscription.rest.actions.GamesAction" method="deleteGame">
+        	<result name="errorDeleteGame">/jsp/games.jsp</result>
+        	<result type="redirectAction">games</result>
+        </action>
+        
+        <!-- SECTION: SUBSCRIPTIONS OF GAMES -->
+        <action name="subscriptions" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="listing">
+        	<result>/jsp/subscriptions.jsp</result>
+        </action>
+        
+        <action name="insertSubscription" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="insert">
+        	<result name="insertSubscription">/jsp/subscriptionForm.jsp</result>
+        	<result type="redirectAction">subscriptions?idGame=${idGame}</result>
+        </action>
+        
+         <action name="editSubscription" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="edit">
+        	<result name="editSubscription">/jsp/subscriptionForm.jsp</result>
+        	<result type="redirectAction">subscriptions?idGame=${idGame}</result>
         </action>
         
         <action name="*" >

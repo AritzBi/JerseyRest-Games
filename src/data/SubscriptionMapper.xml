@@ -10,6 +10,10 @@
 		SELECT id_sus as id, name, description, price from TIPO_SUS where id_game=#{id}
 	</select>
 	
+	<select	id="getSubscriptionById" parameterType="int" resultType="Subscription">
+		SELECT id_sus as id, name, description, price from TIPO_SUS where id_sus=#{id}
+	</select>
+	
 	<insert id="insertSubscription" parameterType="Subscription" useGeneratedKeys="true">
 		INSERT INTO TIPO_SUS(name,description,price,id_game) VALUES ( #{name}, #{description}, #{price}, #{idGame} )
 		  

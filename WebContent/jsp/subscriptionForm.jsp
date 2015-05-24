@@ -13,26 +13,24 @@
 <br/><br/>
 <s:actionerror/>
 <s:actionmessage/>		
-<s:form theme="bootstrap" cssClass="well form-horizontal" label="Juego" action="%{action}" method="post" validate="true">
+<s:form theme="bootstrap" cssClass="well form-horizontal" label="Subscripción" action="%{action}" method="post" validate="true">
 <s:fielderror/>
 	
-	<s:hidden name="game.id" value="%{game.id}" />
+	<s:hidden name="subscription.id" value="%{subscription.id}" />
+	
+	<s:hidden name="subscription.idGame" value="%{subscription.idGame}" />
 	
     <s:textfield
-            label="Name"
-            name="game.name" value="%{game.name}" />
+            label="%{getText('label.subscription.name')}"
+            name="subscription.name" value="%{subscription.name}" />
 
     <s:textfield
-            label="Description"
-            name="game.description" value="%{game.description}" />
+            label="%{getText('label.subscription.description')}"
+            name="subscription.description" value="%{subscription.description}" />
 
     <s:textfield
-            label="Type"
-            name="game.type" value="%{game.type}" />
-            
-    <s:textfield
-            label="Age"
-            name="game.age" value="%{game.age}"/>
+            label="%{getText('label.subscription.price')}"
+            name="subscription.price" value="%{subscription.price}" />
             
     <s:submit cssClass="btn btn-primary" value="%{getText('button.label.submit')}" />
 </s:form>

@@ -27,6 +27,17 @@ public class SubscriptionDAO {
 		return subscriptions;
 	}
 	
+	public Subscription getById (int id) {
+		Subscription subscription = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			subscription = session.selectOne("getSubscriptionById", id);
+		} finally {
+			session.close();
+		}
+		return subscription;
+	}
+	
 	public boolean insertSubscription(Subscription subscription) {
 		boolean resultado = false;
 		SqlSession session = sqlSessionFactory.openSession();

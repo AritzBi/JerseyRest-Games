@@ -1,11 +1,11 @@
 html, body  {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    color: black;
-    background-color: white;
-    font-family: Verdana, Arial, sans-serif;
-    font-size:12px;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    margin-bottom: 5px !important;
+    color: black !important;
+    background-color: white !important;
+    font-family: Verdana, Arial, sans-serif !important;
+    font-size:12px !important;
 }
 .titleDiv {
     background-color: #EFFBEF;

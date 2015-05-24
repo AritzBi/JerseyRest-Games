@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+  		
+<validators>
+	<field name="game.name">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="errors.required.login.name"/>
+		</field-validator>
+	</field>
+	<field name="game.description">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="errors.required.game.description"/>
+		</field-validator>
+	</field>
+	<field name="game.type">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message key="errors.required.game.type"/>
+		</field-validator>
+	</field>
+</validators>
+

@@ -8,9 +8,12 @@
 </head>
 
 <body>
-<sj:menu id="menuWithItems" >
-	<sj:menuItem title="Games" href="games.action"/>
-	<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
-</sj:menu>
+<div style="width:30%;">
+	<sj:menu id="menuWithItems" >
+		<sj:menuItem title="Games" href="games!listing.action"/>
+		<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
+	</sj:menu>
+</div>
+
 </body>
 </html>

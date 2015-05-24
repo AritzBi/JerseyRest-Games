@@ -1,4 +1,4 @@
-package es.deusto.gamesubscription.actions;
+package es.deusto.gamesubscription.rest.actions;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -10,7 +10,7 @@ public  class LoginAction  extends ActionSupport {
 
 	public String execute() throws Exception {
         System.out.println("Validating login");
-		if (getUsername() == null || getPassword() == null) {
+		/**if (getUsername() == null || getPassword() == null) {
 			addActionError("Compulsory to specify both username and password!");
 			return INPUT;
 		}
@@ -18,8 +18,9 @@ public  class LoginAction  extends ActionSupport {
             addActionError(getText("invalid_login_details"));
             return ERROR;
 		}else{
-			return SUCCESS;
-		}
+			
+		}**/
+		return SUCCESS;
 	}
 
 
