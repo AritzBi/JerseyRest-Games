@@ -2,6 +2,8 @@ package es.deusto.gamesubscription.rest.actions;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import es.deusto.gamesubscription.rest.dao.SubscriptionDAO;
@@ -12,13 +14,13 @@ public class SubscriptionsAction extends ActionSupport {
 	public String idGame;
 
 	public List<Subscription> subscriptions = null;
-	
+
 	public String editedSubscription;
-	
+
 	public String deletedSubscription;
-	
+
 	public Subscription subscription = null;
-	
+
 	private String action;
 
 	public String getIdGame() {
@@ -44,7 +46,7 @@ public class SubscriptionsAction extends ActionSupport {
 	public void setSubscription(Subscription subscription) {
 		this.subscription = subscription;
 	}
-	
+
 	public String getEditedSubscription() {
 		return editedSubscription;
 	}
@@ -60,6 +62,7 @@ public class SubscriptionsAction extends ActionSupport {
 	public void setDeletedSubscription(String deletedSubscription) {
 		this.deletedSubscription = deletedSubscription;
 	}
+
 	public String getAction() {
 		return action;
 	}
@@ -72,34 +75,54 @@ public class SubscriptionsAction extends ActionSupport {
 
 	public String doListing() {
 		SubscriptionDAO subscriptionsDAO = new SubscriptionDAO();
+		if ( idGame == null )
+		{
+			idGame = String.valueOf( ServletActionContext.getRequest().getAttribute("idGame") );
+		}
 		setSubscriptions(subscriptionsDAO.findSubscriptionsByIdGame(Integer
 				.valueOf(idGame)));
 		return SUCCESS;
 	}
-	
-	public String goToInsertGame() {
+
+	public String goToInsert() {
 		setAction("insertSubscription.action");
-		return "insertGame";
+		return "insertSubscription";
 	}
-	
+
 	public String goToEditSubscription() {
 		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
-		setSubscription(subscriptionDAO.getById(Integer.parseInt(editedSubscription)));
+		setSubscription(subscriptionDAO.getById(Integer
+				.parseInt(editedSubscription)));
 		setAction("editSubscription.action");
 		return "editSubscription";
 	}
-	
-	public String doEditSubscription() {
+
+	public String doEdit() {
 		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
-		if ( subscriptionDAO.updateSubscription(subscription) )
-		{
+		if (subscriptionDAO.updateSubscription(subscription)) {
 			return SUCCESS;
-		}
-		else
-		{
+		} else {
 			addActionError("errors.invalidad.update.subscription");
 			return "editSubscription";
 		}
+	}
+	
+	public String doInsert() {
+		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
+		if(subscriptionDAO.insertSubscription(subscription)) {
+			return SUCCESS;
+		} else {
+			addActionError("errors.invalidad.insert.subscription");
+			return "insertSubscription";
+		}
+	}
+	
+	public String doDelete() {
+		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
+		if ( !subscriptionDAO.deleteById(Integer.valueOf( deletedSubscription ) ) ) {
+			addActionError("errors.invalidad.delete.subscription");
+		}
+		return SUCCESS;
 	}
 
 	@Override

@@ -14,6 +14,7 @@
             <result>/jsp/index.jsp</result>
         </action>
         
+        <!-- SECTION: GAMES -->
        <action name="games" class="es.deusto.gamesubscription.rest.actions.GamesAction" method="listing">
         	<result name="insertGame">/jsp/gameForm.jsp</result>
         	<result name="successInsertGame" type="redirectAction">games</result>
@@ -38,13 +39,37 @@
         
         <action name="insertSubscription" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="insert">
         	<result name="insertSubscription">/jsp/subscriptionForm.jsp</result>
-        	<result type="redirectAction">subscriptions?idGame=${idGame}</result>
+        	<result type="redirectAction">subscriptions?idGame=${subscription.idGame}</result>
         </action>
         
          <action name="editSubscription" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="edit">
         	<result name="editSubscription">/jsp/subscriptionForm.jsp</result>
-        	<result type="redirectAction">subscriptions?idGame=${idGame}</result>
+        	<result type="redirectAction">
+        		<param name="actionName">subscriptions</param>
+    			<param name="idGame">${subscription.idGame}</param>
+        	</result>
         </action>
+        
+        <action name="deleteSubscription" class="es.deusto.gamesubscription.rest.actions.SubscriptionsAction" method="delete">
+        	<result type="redirectAction">
+        		<param name="actionName">subscriptions</param>
+    			<param name="idGame">${idGame}</param>
+        	</result>
+        </action>
+        
+        <!-- SECTION: SUBSCRIPTION USERS OF GAMES -->
+        <action name="subscriptors" class="es.deusto.gamesubscription.rest.actions.SubscriptionUserAction" method="listing">
+        	<result>/jsp/subscriptors.jsp</result>
+        </action>
+        
+        <action name="insertSubscriptor" class="es.deusto.gamesubscription.rest.actions.SubscriptionUserAction" method="insert">
+        	<result name="insertSubscriptor">/jsp/subscriptorForm.jsp</result>
+        	<result type="redirectAction">
+        		<param name="actionName">subscriptors</param>
+        		<param name="idGame">${idSubscription}</param>
+        	</result>
+        </action>
+        
         
         <action name="*" >
 			<result>/jsp/{1}.jsp</result>

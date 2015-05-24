@@ -6,37 +6,37 @@
 	    <title><s:text name="application.title"/></title>
 	</head>
 	<body>
-		<div class="titleDiv"><s:text name="label.seccion.manage.subscriptions"/></div>
+		<div class="titleDiv"><s:text name="label.seccion.manage.subscriptors"/></div>
 		<br/><br/>
 		<b>
-		<s:url id="urlAnyadir" action="insertSubscription!goToInsert" escapeAmp="false">
+		<s:url id="urlAnyadir" action="insertSubscriptor!goToInsert" escapeAmp="false">
 			<s:param name="subscription.idGame" value="idGame" />
 		</s:url>
 		<a href="<s:property value="#urlAnyadir"/>"><s:text name="button.label.anadir"/></a>
 		</b>
 		<br/><br/>
-		<h1> <s:text name="label.subscripcion.lista" /> </h1>
+		<h1> <s:text name="label.subscriptor.lista" /> </h1>
 		<table class="borderAll">
 		    <tr>
-		        <th><s:text name="label.subscription.id"/></th>
-		        <th><s:text name="label.subscription.name"/></th>
-		        <th><s:text name="label.subscription.description"/></th>
-		        <th><s:text name="label.subscription.price"/></th>
+		        <th><s:text name="label.subscriptor.id"/></th>
+		         <th><s:text name="label.subscriptor.dni"/></th>
+		        <th><s:text name="label.subscriptor.name"/></th>
+		        <th><s:text name="label.subscriptor.surname"/></th>
+		        <th><s:text name="label.subscriptor.address"/></th>
+		         <th><s:text name="label.subscriptor.telephone"/></th>
+		        <th><s:text name="label.subscriptor.fechaSus"/></th>
 		        <th>&nbsp;&nbsp;</th>
 		    </tr>
-		    <s:iterator value="subscriptions" status="status">
+		    <s:iterator value="subscriptors" status="status">
 		        <tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
-		            <td class="nowrap"><s:property value="id"/></td>
-		            <td class="nowrap"><s:property value="name"/></td>
-		            <td class="nowrap"><s:property value="description"/></td>
-		            <td class="nowrap"><s:property value="price"/></td>
+		            <td class="nowrap"><s:property value="cliente.id"/></td>
+		            <td class="nowrap"><s:property value="cliente.dni"/></td>
+		            <td class="nowrap"><s:property value="cliente.name"/></td>
+		            <td class="nowrap"><s:property value="cliente.surname"/></td>
+		            <td class="nowrap"><s:property value="cliente.address"/></td>
+		            <td class="nowrap"><s:property value="cliente.tel_number"/></td>
+		            <td class="nowrap"><s:property value="fechaSuscripcion"/></td>
 		            <td>
-		           	<s:url id="URLClientesSubscription" action="subscriptors.action">
-    					<s:param name="idSubscription" value="id" />
-					</s:url>
-					<a href="<s:property value="#URLClientesSubscription"/>">
-						<img src="img/clientes.png" alt="subscriptions" class="icon" />
-					</a>
 		            
 		            <s:url id="URLeditSubscription" action="editSubscription!goToEditSubscription.action" escapeAmp="false">
     					<s:param name="editedSubscription" value="id" />

@@ -4,14 +4,17 @@
 <html>
 <head>
 	<title><s:text name="application.title"/></title>
+	 <link href="<s:url value='/css/main.css'/>" rel="stylesheet" type="text/css"/>
 	<sj:head jqueryui="true" jquerytheme="pepper-grinder"/>
 </head>
 
 <body>
-<div style="width:30%;">
-	<sj:menu id="menuWithItems" >
-		<sj:menuItem title="Games" href="games!listing.action"/>
-		<sj:menuItem title="Struts2 jQuery News" menuIcon="ui-icon-extlink" href="http://www.jgeppert.com/category/java/struts2-jquery/"/>
+<div class="titleDiv" style="margin-top:10px;"><s:text name="label.seccion.main"/></div>
+<br/><br/>
+<div style="width:50%;">
+	<sj:menu id="menuWithItems" title="Administración">
+		<sj:menuItem title="%{getText('label.seccion.manage.juegos')}" href="games!listing.action"/>
+		<sj:menuItem title="%{getText('label.seccion.manage.clients')}" href="clients.action"/>
 	</sj:menu>
 </div>
 

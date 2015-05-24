@@ -7,11 +7,11 @@
 <mapper namespace="es.deusto.gamesubscriptions.rest.SubscriptionMapper">
 
 	<select	id="findSubscriptionsByIdGame" parameterType="int" resultType="Subscription">
-		SELECT id_sus as id, name, description, price from TIPO_SUS where id_game=#{id}
+		SELECT id_sus as id, name, description, price, id_game as idGame from TIPO_SUS where id_game=#{id}
 	</select>
 	
 	<select	id="getSubscriptionById" parameterType="int" resultType="Subscription">
-		SELECT id_sus as id, name, description, price from TIPO_SUS where id_sus=#{id}
+		SELECT id_sus as id, name, description, price, id_game as idGame from TIPO_SUS where id_sus=#{id}
 	</select>
 	
 	<insert id="insertSubscription" parameterType="Subscription" useGeneratedKeys="true">
