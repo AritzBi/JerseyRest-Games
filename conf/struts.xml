@@ -70,7 +70,10 @@
         	</result>
         </action>
         
-        
+        <!-- SECTION: CLIENTS -->
+        <action name="clients" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="listing">
+        	<result>/jsp/clients.jsp</result>
+        </action>
         <action name="*" >
 			<result>/jsp/{1}.jsp</result>
 		</action>
