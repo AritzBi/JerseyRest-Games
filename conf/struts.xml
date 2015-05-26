@@ -11,6 +11,7 @@
 		<default-interceptor-ref name="paramsPrepareParamsStack"/>
 
         <action name="doLogin" class="es.deusto.gamesubscription.rest.actions.LoginAction">
+        	<result name="input">login.jsp</result>
             <result>/jsp/index.jsp</result>
         </action>
         
@@ -72,6 +73,15 @@
         
         <!-- SECTION: CLIENTS -->
         <action name="clients" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="listing">
+        	<result>/jsp/clients.jsp</result>
+        </action>
+        
+        <action name="editClient" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="edit">
+        	<result name="editClient">/jsp/clientForm.jsp</result>
+        	<result type="redirectAction">clients</result>
+        </action>
+        
+        <action name="deleteClient" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="delete">
         	<result>/jsp/clients.jsp</result>
         </action>
         <action name="*" >

@@ -4,22 +4,16 @@
         "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
   		
 <validators>
-	<field name="game.name">
+	<field name="username">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<message key="errors.required.login.name"/>
+			<message>¡Nombre de usuario es requerido!</message>
 		</field-validator>
 	</field>
-	<field name="game.description">
+	<field name="password">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<message key="errors.required.game.description"/>
-		</field-validator>
-	</field>
-	<field name="game.type">
-		<field-validator type="requiredstring">
-			<param name="trim">true</param>
-			<message key="errors.required.game.type"/>
+			<message>¡Contraseña es requerida!</message>
 		</field-validator>
 	</field>
 </validators>

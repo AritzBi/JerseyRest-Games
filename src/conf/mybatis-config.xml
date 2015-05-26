@@ -11,6 +11,7 @@
 		<typeAlias type="es.deusto.gamesubscription.rest.model.Game" alias="Game"/>
 		<typeAlias type="es.deusto.gamesubscription.rest.model.Subscription" alias="Subscription"/>
 		<typeAlias type="es.deusto.gamesubscription.rest.model.SubscriptionUser" alias="SubscriptionUser"/>
+		<typeAlias type="es.deusto.gamesubscription.rest.model.User" alias="User" />
 	</typeAliases>
 
 	<environments default="development">
@@ -30,6 +31,7 @@
   		<mapper resource="data/ClientMapper.xml"/>
   		<mapper resource="data/SubscriptionMapper.xml"/>
   		<mapper resource="data/SubscriptionUserMapper.xml"/>
+  		<mapper resource="data/UserMapper.xml"/>
 	</mappers>
 		
 </configuration>

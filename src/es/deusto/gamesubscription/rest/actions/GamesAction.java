@@ -24,7 +24,7 @@ public class GamesAction extends ActionSupport {
 	public String editedGame;
 	// Specify the action to know if update or insert
 	public String action;
-	//String with the deleted game
+	// String with the deleted game
 	public String deletedGame;
 
 	public String doListing() {
@@ -63,6 +63,8 @@ public class GamesAction extends ActionSupport {
 		GamesDAO gamesDAO = new GamesDAO();
 		boolean gameInserted = false;
 
+		// if ( game.getAge() )
+		// addFieldError("game.age", "Debes rellenar este atributo");
 		if (gamesDAO.insertGame(game)) {
 			gameInserted = true;
 		} else {
@@ -86,26 +88,24 @@ public class GamesAction extends ActionSupport {
 			return "editGame";
 		}
 	}
-	
+
 	public String doDeleteGame() {
 		GamesDAO gamesDAO = new GamesDAO();
-		
-		if ( !gamesDAO.deleteById(Integer.valueOf( deletedGame ) ) ) {
+
+		if (!gamesDAO.deleteById(Integer.valueOf(deletedGame))) {
 			addActionError(getText("errors.invalid.update.game"));
 			return "errorDeleteGame";
-		}
-		else {
-			
+		} else {
 			return SUCCESS;
 		}
-		
+
 	}
 
 	@Override
 	public String execute() throws Exception {
 		return SUCCESS;
 	}
-	
+
 	public String getSearchedGame() {
 		return searchedGame;
 	}
@@ -145,6 +145,7 @@ public class GamesAction extends ActionSupport {
 	public void setAction(String action) {
 		this.action = action;
 	}
+
 	public String getDeletedGame() {
 		return deletedGame;
 	}

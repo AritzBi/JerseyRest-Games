@@ -7,7 +7,7 @@
 		<sb:head/>
 	</head>
 	<body>
-		<s:form action="doLogin" method="POST" theme="bootstrap" cssClass="form-horizontal" label=" Login to GameOn Application">
+		<s:form action="doLogin" method="POST" theme="bootstrap" cssClass="form-horizontal" label=" Login to GameOn Application" validate="true">
 			<s:actionerror theme="bootstrap" />
 			<s:textfield name="username" label="%{getText('label.login.name')}" value="Admin"/>
 			<s:password name="password" label="%{getText('label.login.password')}" value="Admin" />

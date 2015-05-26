@@ -9,17 +9,17 @@
 		<div class="titleDiv"><s:text name="label.seccion.manage.clients"/></div>
 		<br/><br/>
 		<b>
-		<s:url id="urlGames" action="games" escapeAmp="false"/>
-		<a href="<s:property value="#urlGames"/>"><s:text name="button.label.find.all"/></a>
+		<s:url id="urlClients" action="clients" escapeAmp="false"/>
+		<a href="<s:property value="#urlClients"/>"><s:text name="button.label.find.all"/></a>
 		
 		| <s:url id="urlAnyadir" action="games!insertGame" escapeAmp="false"/>
 		<a href="<s:property value="#urlAnyadir"/>"><s:text name="button.label.anadir"/></a>
 		</b>
 		<br/><br/>
-		<h1> Búsqueda de juego </h1>
+		<h1> Búsqueda de Cliente </h1>
 		<s:actionerror/>
-		<s:form action="games!doGetGame" method="post">
-			<s:textfield name="searchedGame" label="Searched Id Game" />
+		<s:form action="clients!doGetClient" method="post">
+			<s:textfield name="dni" label="DNI" />
 		    <s:submit value="%{getText('button.label.submit')}" />
 		</s:form>
 
@@ -43,24 +43,18 @@
 		            <td class="nowrap"><s:property value="address"/></td>
 		            <td class="nowrap"><s:property value="tel_number"/></td>
 		            <td>
-		           	<s:url id="URLsubscriptionsGame" action="subscriptions.action">
-    					<s:param name="idGame" value="id" />
-					</s:url>
-					<a href="<s:property value="#URLsubscriptionsGame"/>">
-						<img src="img/subscriptions.png" alt="subscriptions" class="icon" />
-					</a>
 		            
-		            <s:url id="URLeditGame" action="editGame!goToEditGame.action">
-    					<s:param name="editedGame" value="id" />
+		            <s:url id="URLeditClient" action="editClient!goToEdit.action">
+    					<s:param name="editedClient" value="id" />
 					</s:url>
-					<a href="<s:property value="#URLeditGame"/>">
+					<a href="<s:property value="#URLeditClient"/>">
 						<img src="img/edit.png" alt="edit" class="icon" />
 					</a>
 		            
-		            <s:url id="URLdeleteGame" action="deleteGame.action">
-    					<s:param name="deletedGame" value="id" />
+		            <s:url id="URLdeleteClient" action="deleteClient.action">
+    					<s:param name="deletedClient" value="id" />
 					</s:url>
-		            <a href="<s:property value="#URLdeleteGame"/>">
+		            <a href="<s:property value="#URLdeleteClient"/>">
 		            	<img src="img/delete-icon.png" alt="delete" class="icon" />
 		            </a>
 		            </td>

@@ -1,2 +1,0 @@
-porque no funciona lo de las acciones con métodos.. (no lo mapea bien)
-para pasar de vista a vista, ¿siempre por medio de una accion que lo asocie?
