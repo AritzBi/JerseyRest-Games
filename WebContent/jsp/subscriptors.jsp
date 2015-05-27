@@ -10,7 +10,7 @@
 		<br/><br/>
 		<b>
 		<s:url id="urlAnyadir" action="insertSubscriptor!goToInsert" escapeAmp="false">
-			<s:param name="subscription.idGame" value="idGame" />
+			<s:param name="idSubscription" value="idSubscription" />
 		</s:url>
 		<a href="<s:property value="#urlAnyadir"/>"><s:text name="button.label.anadir"/></a>
 		</b>
@@ -38,16 +38,9 @@
 		            <td class="nowrap"><s:property value="fechaSuscripcion"/></td>
 		            <td>
 		            
-		            <s:url id="URLeditSubscription" action="editSubscription!goToEditSubscription.action" escapeAmp="false">
-    					<s:param name="editedSubscription" value="id" />
-					</s:url>
-					<a href="<s:property value="#URLeditSubscription"/>">
-						<img src="img/edit.png" alt="edit" class="icon" />
-					</a>
-		            
-		            <s:url id="URLDeleteSubscription" action="deleteSubscription.action" escapeAmp="false">
-    					<s:param name="deletedSubscription" value="id" />
-    					<s:param name="idGame" value="idGame" />
+		            <s:url id="URLDeleteSubscription" action="deleteSubscriptor.action" escapeAmp="false">
+    					<s:param name="idClienteSeleccionado" value="cliente.id" />
+    					<s:param name="idSubscription" value="idSubscription" />
 					</s:url>
 		            <a href="<s:property value="#URLDeleteSubscription"/>">
 		            	<img src="img/delete-icon.png" alt="delete" class="icon" />

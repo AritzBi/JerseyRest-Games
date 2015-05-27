@@ -58,7 +58,7 @@
         	</result>
         </action>
         
-        <!-- SECTION: SUBSCRIPTION USERS OF GAMES -->
+        <!-- SECTION: SUBSCRIPTORS FOR GAMES -->
         <action name="subscriptors" class="es.deusto.gamesubscription.rest.actions.SubscriptionUserAction" method="listing">
         	<result>/jsp/subscriptors.jsp</result>
         </action>
@@ -67,7 +67,14 @@
         	<result name="insertSubscriptor">/jsp/subscriptorForm.jsp</result>
         	<result type="redirectAction">
         		<param name="actionName">subscriptors</param>
-        		<param name="idGame">${idSubscription}</param>
+        		<param name="idSubscription">${idSubscription}</param>
+        	</result>
+        </action>
+        
+        <action name="deleteSubscriptor" class="es.deusto.gamesubscription.rest.actions.SubscriptionUserAction" method="delete">
+        	<result type="redirectAction">
+        	    <param name="actionName">subscriptors</param>
+        		<param name="idSubscription">${idSubscription}</param>
         	</result>
         </action>
         
