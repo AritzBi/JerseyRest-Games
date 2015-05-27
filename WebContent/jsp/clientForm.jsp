@@ -18,7 +18,9 @@
 	
 	<s:hidden name="client.id" value="%{client.id}" />
 	
-	<s:hidden name="client.dni" value="%{client.dni}" />
+	<s:textfield
+            label="%{getText('label.client.dni')}"
+            name="client.name" value="%{client.dni}" disabled="%{action==editClient.action}" />
 	
     <s:textfield
             label="%{getText('label.client.name')}"

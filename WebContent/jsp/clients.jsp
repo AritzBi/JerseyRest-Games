@@ -12,7 +12,7 @@
 		<s:url id="urlClients" action="clients" escapeAmp="false"/>
 		<a href="<s:property value="#urlClients"/>"><s:text name="button.label.find.all"/></a>
 		
-		| <s:url id="urlAnyadir" action="insertClient" escapeAmp="false"/>
+		| <s:url id="urlAnyadir" action="insertClient!goToInsert" escapeAmp="false"/>
 		<a href="<s:property value="#urlAnyadir"/>"><s:text name="button.label.anadir"/></a>
 		</b>
 		<br/><br/>

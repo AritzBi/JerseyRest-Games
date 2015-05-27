@@ -83,6 +83,13 @@
         	<result>/jsp/clients.jsp</result>
         </action>
         
+        <action name="insertClient" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="insert">
+        	<result name="insertClient">/jsp/clientForm.jsp</result>
+        	<result type="redirectAction">
+        		<param name="actionName">clients</param>
+        	</result>
+        </action>
+        
         <action name="editClient" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="edit">
         	<result name="editClient">/jsp/clientForm.jsp</result>
         	<result type="redirectAction">clients</result>

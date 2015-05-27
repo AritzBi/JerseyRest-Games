@@ -129,8 +129,23 @@ public class ClientsAction extends ActionSupport {
 
 	}
 
+	public String doGoToInsert() {
+		setAction("insertClient.action");
+		return "insertClient";
+	}
+
+	public String doInsert() {
+		if (validateClientInfo()) {
+			if (clientDAO.insertClient(client))
+				return SUCCESS;
+			else
+				addActionError("¡Error al intentar insertar un cliente");
+		}
+		return "insertClient";
+	}
+
 	public String doDelete() {
-		if ( !clientDAO.deleteById(Integer.valueOf(deletedClient))) {
+		if (!clientDAO.deleteById(Integer.valueOf(deletedClient))) {
 			addActionError(getText("errors.invalid.delete.client"));
 		}
 		return SUCCESS;
@@ -143,11 +158,13 @@ public class ClientsAction extends ActionSupport {
 			allCorrect = false;
 		}
 		if (StringUtils.isBlank(client.getSurname())) {
-			addFieldError("client.surname", getText("errors.required.client.surname"));
+			addFieldError("client.surname",
+					getText("errors.required.client.surname"));
 			allCorrect = false;
 		}
 		if (StringUtils.isBlank(client.getAddress())) {
-			addFieldError("client.address", getText("errors.required.client.address"));
+			addFieldError("client.address",
+					getText("errors.required.client.address"));
 			allCorrect = false;
 		}
 		if (StringUtils.isBlank(client.getTel_number())) {
