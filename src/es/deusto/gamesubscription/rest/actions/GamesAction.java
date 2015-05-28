@@ -37,7 +37,7 @@ public class GamesAction extends ActionSupport {
 	}
 
 	public String goToInsertGame() {
-		setAction("game!insertGame.action");
+		setAction("games!insertGame.action");
 		return "insertGame";
 	}
 
