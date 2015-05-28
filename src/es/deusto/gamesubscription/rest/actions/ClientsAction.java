@@ -125,6 +125,7 @@ public class ClientsAction extends ActionSupport {
 				addActionError(getText("errors.invalid.edit.client"));
 			}
 		}
+		setAction("editClient.action");
 		return "editClient";
 
 	}
@@ -141,6 +142,7 @@ public class ClientsAction extends ActionSupport {
 			else
 				addActionError(getText("errors.invalid.insert.client") );
 		}
+		setAction("editClient.action");
 		return "insertClient";
 	}
 

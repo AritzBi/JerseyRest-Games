@@ -103,6 +103,7 @@ public class SubscriptionsAction extends ActionSupport {
 			return SUCCESS;
 		} else {
 			addActionError("errors.invalidad.update.subscription");
+			setAction("editSubscription.action");
 			return "editSubscription";
 		}
 	}
@@ -113,6 +114,7 @@ public class SubscriptionsAction extends ActionSupport {
 			return SUCCESS;
 		} else {
 			addActionError("errors.invalidad.insert.subscription");
+			setAction("insertSubscription.action");
 			return "insertSubscription";
 		}
 	}

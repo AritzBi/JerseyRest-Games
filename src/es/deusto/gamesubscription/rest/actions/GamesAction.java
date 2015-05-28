@@ -70,12 +70,14 @@ public class GamesAction extends ActionSupport {
 			} else {
 				addActionError(getText("errors.invalid.insert.game"));
 			}
-		};
-
+		}
 
 		// Se quiere pasar al .jsp o ha dado error la insercion
 		if (!gameInserted)
+		{
+			setAction("games!insertGame.action");
 			return "insertGame";
+		}
 		else
 			return "successInsertGame";
 	}
@@ -87,9 +89,9 @@ public class GamesAction extends ActionSupport {
 				return SUCCESS;
 			} else {
 				addActionError(getText("errors.invalid.update.game"));
-				return "editGame";
 			}			
 		}
+		setAction("editGame.action");
 		return "editGame";
 
 	}

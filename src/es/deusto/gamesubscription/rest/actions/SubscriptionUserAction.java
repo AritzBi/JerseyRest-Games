@@ -2,7 +2,6 @@ package es.deusto.gamesubscription.rest.actions;
 
 import java.util.List;
 
-import com.mysql.jdbc.jdbc2.optional.SuspendableXAConnection;
 import com.opensymphony.xwork2.ActionSupport;
 
 import es.deusto.gamesubscription.rest.dao.ClientDAO;
@@ -112,6 +111,7 @@ public class SubscriptionUserAction extends ActionSupport {
 			return SUCCESS;
 		} else {
 			addActionError(getText("errors.invalidad.insert.subscriptor"));
+			setAction("insertSubscriptor.action");
 			return "insertSubscriptor";
 		}
 	}
