@@ -86,10 +86,20 @@ public class SubscriptionUserAction extends ActionSupport {
 	public void setClientes(List<Client> clientes) {
 		this.clientes = clientes;
 	}
-
 	public String goToInsert() {
 		ClientDAO clientDAO = new ClientDAO();
+		SubscriptionUserDAO subscriptionUserDAO = new SubscriptionUserDAO();
 		setClientes(clientDAO.findAll());
+		List<SubscriptionUser>subscriptors_tmp = subscriptionUserDAO.findSubscriptrorsBySubscriptionId(Long.parseLong(idSubscription));
+		String dni=null;
+		for (SubscriptionUser subscriptionUser: subscriptors_tmp){
+			dni = subscriptionUser.getCliente().getDni();
+			for (int i=0;i<clientes.size();i++){
+				if (clientes.get(i).getDni().equals(dni)){
+					clientes.remove(i);
+				}
+			}
+		}
 		setAction("insertSubscriptor.action");
 		return "insertSubscriptor";
 	}
