@@ -2,6 +2,7 @@ package es.deusto.gamesubscription.rest.actions;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -99,24 +100,33 @@ public class SubscriptionsAction extends ActionSupport {
 
 	public String doEdit() {
 		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
-		if (subscriptionDAO.updateSubscription(subscription)) {
-			return SUCCESS;
-		} else {
-			addActionError("errors.invalidad.update.subscription");
-			setAction("editSubscription.action");
-			return "editSubscription";
+		if(validateSubscriptionInfo()){
+			if (subscriptionDAO.updateSubscription(subscription)) {
+				return SUCCESS;
+			} else {
+				addActionError("errors.invalidad.update.subscription");
+				setAction("editSubscription.action");
+				return "editSubscription";
+			}			
 		}
+		setAction("editSubscription.action");
+		return "editSubscription";
+
 	}
 	
 	public String doInsert() {
 		SubscriptionDAO subscriptionDAO = new SubscriptionDAO();
-		if(subscriptionDAO.insertSubscription(subscription)) {
-			return SUCCESS;
-		} else {
-			addActionError("errors.invalidad.insert.subscription");
-			setAction("insertSubscription.action");
-			return "insertSubscription";
+		if(validateSubscriptionInfo()){
+			if(subscriptionDAO.insertSubscription(subscription)) {
+				return SUCCESS;
+			} else {
+				addActionError("errors.invalidad.insert.subscription");
+				setAction("insertSubscription.action");
+				return "insertSubscription";
+			}	
 		}
+		setAction("insertSubscription.action");
+		return "insertSubscription";
 	}
 	
 	public String doDelete() {
@@ -131,5 +141,19 @@ public class SubscriptionsAction extends ActionSupport {
 	public String execute() throws Exception {
 		return SUCCESS;
 	}
-
+	private boolean validateSubscriptionInfo() {
+		boolean allCorrect = true;
+		if (StringUtils.isBlank(subscription.getName())) {
+			addFieldError("subscription.name", getText("errors.required.subscription.name"));
+			allCorrect = false;
+		}
+		if (StringUtils.isBlank(subscription.getDescription())) {
+			addFieldError("subscription.description",
+					getText("errors.required.subscription.description"));
+			allCorrect = false;
+		}
+		
+		
+		return allCorrect;
+	}
 }

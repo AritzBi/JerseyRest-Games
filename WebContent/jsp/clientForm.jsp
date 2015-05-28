@@ -20,7 +20,7 @@
 	
 	<s:textfield
             label="%{getText('label.client.dni')}"
-            name="client.name" value="%{client.dni}" disabled="%{action==editClient.action}" />
+            name="client.dni" value="%{client.dni}" disabled="%{action==editClient.action}" />
 	
     <s:textfield
             label="%{getText('label.client.name')}"
