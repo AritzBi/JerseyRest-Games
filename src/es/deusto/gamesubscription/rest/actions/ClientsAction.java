@@ -100,7 +100,7 @@ public class ClientsAction extends ActionSupport {
 		} else {
 			Client cliente = clientDAO.getClientByDNI(dni);
 			if (cliente == null)
-				addActionError("¡No existe cliente con ese DNI!");
+				addActionError("ï¿½No existe cliente con ese DNI!");
 			else {
 				List<Client> clientesAux = new ArrayList<Client>();
 				clientesAux.add(cliente);
@@ -139,7 +139,7 @@ public class ClientsAction extends ActionSupport {
 			if (clientDAO.insertClient(client))
 				return SUCCESS;
 			else
-				addActionError("¡Error al intentar insertar un cliente");
+				addActionError(getText("errors.invalid.insert.client") );
 		}
 		return "insertClient";
 	}
@@ -151,6 +151,7 @@ public class ClientsAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	//TODO:aritzbilbao. Sigue este como patron para validar tanto juegos como subscripciones
 	private boolean validateClientInfo() {
 		boolean allCorrect = true;
 		if (StringUtils.isBlank(client.getName())) {

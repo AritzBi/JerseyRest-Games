@@ -14,6 +14,7 @@ public class LoginAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	public String execute() throws Exception {
+		System.out.println("LOGIN");
 		if (getUsername() == null || getPassword() == null) {
 			addActionError(getText("errors.invalid.login.details"));
 			return INPUT;

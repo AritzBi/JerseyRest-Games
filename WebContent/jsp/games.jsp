@@ -12,7 +12,7 @@
 		<s:url id="urlGames" action="games" escapeAmp="false"/>
 		<a href="<s:property value="#urlGames"/>"><s:text name="button.label.find.all"/></a>
 		
-		| <s:url id="urlAnyadir" action="games!insertGame" escapeAmp="false"/>
+		| <s:url id="urlAnyadir" action="games!goToInsertGame" escapeAmp="false"/>
 		<a href="<s:property value="#urlAnyadir"/>"><s:text name="button.label.anadir"/></a>
 		</b>
 		<br/><br/>

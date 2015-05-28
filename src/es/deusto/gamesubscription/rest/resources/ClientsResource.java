@@ -31,7 +31,6 @@ public class ClientsResource {
 	@GET
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public List<Client> getClients() {
-		System.out.println("paso por aqui");
 		List<Client> clients = new ArrayList<Client>();
 		try {
 			clients.addAll( GameDao.instance().getClients() );

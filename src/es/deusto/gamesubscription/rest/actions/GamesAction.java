@@ -3,6 +3,8 @@ package es.deusto.gamesubscription.rest.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import es.deusto.gamesubscription.rest.dao.GamesDAO;
@@ -62,14 +64,14 @@ public class GamesAction extends ActionSupport {
 	public String doInsertGame() {
 		GamesDAO gamesDAO = new GamesDAO();
 		boolean gameInserted = false;
+		if(validateGameInfo()){
+			if (gamesDAO.insertGame(game)) {
+				gameInserted = true;
+			} else {
+				addActionError(getText("errors.invalid.insert.game"));
+			}
+		};
 
-		// if ( game.getAge() )
-		// addFieldError("game.age", "Debes rellenar este atributo");
-		if (gamesDAO.insertGame(game)) {
-			gameInserted = true;
-		} else {
-			addActionError(getText("errors.invalid.insert.game"));
-		}
 
 		// Se quiere pasar al .jsp o ha dado error la insercion
 		if (!gameInserted)
@@ -80,13 +82,16 @@ public class GamesAction extends ActionSupport {
 
 	public String doEditGame() {
 		GamesDAO gamesDAO = new GamesDAO();
-
-		if (gamesDAO.updateGame(game)) {
-			return SUCCESS;
-		} else {
-			addActionError(getText("errors.invalid.update.game"));
-			return "editGame";
+		if (validateGameInfo()){
+			if (gamesDAO.updateGame(game)) {
+				return SUCCESS;
+			} else {
+				addActionError(getText("errors.invalid.update.game"));
+				return "editGame";
+			}			
 		}
+		return "editGame";
+
 	}
 
 	public String doDeleteGame() {
@@ -152,5 +157,26 @@ public class GamesAction extends ActionSupport {
 
 	public void setDeletedGame(String deletedGame) {
 		this.deletedGame = deletedGame;
+	}
+	
+	private boolean validateGameInfo() {
+		boolean allCorrect = true;
+		if (StringUtils.isBlank(game.getName())) {
+			addFieldError("game.name", getText("errors.required.game.name"));
+			allCorrect = false;
+		}
+		if (StringUtils.isBlank(game.getDescription())) {
+			addFieldError("game.description",
+					getText("errors.required.game.description"));
+			allCorrect = false;
+		}
+		
+		if(StringUtils.isBlank(game.getType())){
+			addFieldError("game.type",
+					getText("errors.required.game.type"));
+			allCorrect = false;	
+		}
+		
+		return allCorrect;
 	}
 }

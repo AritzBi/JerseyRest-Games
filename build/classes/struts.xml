@@ -22,7 +22,7 @@
         	<result name="editGame">/jsp/gameForm.jsp</result>
         	<result>/jsp/games.jsp</result>
         </action>
-        
+       
         <action name="editGame" class="es.deusto.gamesubscription.rest.actions.GamesAction" method="editGame">
         	<result name="editGame">/jsp/gameForm.jsp</result>
         	<result type="redirectAction">games</result>
