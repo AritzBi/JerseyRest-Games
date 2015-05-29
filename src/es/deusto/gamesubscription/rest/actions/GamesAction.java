@@ -53,7 +53,10 @@ public class GamesAction extends ActionSupport {
 		GamesDAO gamesDAO = new GamesDAO();
 		games = new ArrayList<Game>();
 		if (searchedGame != null && !searchedGame.equals("")) {
-			games.add(gamesDAO.getGameById(Integer.parseInt(searchedGame)));
+			Game game = gamesDAO.getGameById(Integer.parseInt(searchedGame));
+			if (game != null) {
+				games.add(game);
+			}
 			setGames(games);
 		} else {
 			addActionError("Debes especificar un valor");
@@ -64,7 +67,7 @@ public class GamesAction extends ActionSupport {
 	public String doInsertGame() {
 		GamesDAO gamesDAO = new GamesDAO();
 		boolean gameInserted = false;
-		if(validateGameInfo()){
+		if (validateGameInfo()) {
 			if (gamesDAO.insertGame(game)) {
 				gameInserted = true;
 			} else {
@@ -73,23 +76,21 @@ public class GamesAction extends ActionSupport {
 		}
 
 		// Se quiere pasar al .jsp o ha dado error la insercion
-		if (!gameInserted)
-		{
+		if (!gameInserted) {
 			setAction("games!insertGame.action");
 			return "insertGame";
-		}
-		else
+		} else
 			return "successInsertGame";
 	}
 
 	public String doEditGame() {
 		GamesDAO gamesDAO = new GamesDAO();
-		if (validateGameInfo()){
+		if (validateGameInfo()) {
 			if (gamesDAO.updateGame(game)) {
 				return SUCCESS;
 			} else {
 				addActionError(getText("errors.invalid.update.game"));
-			}			
+			}
 		}
 		setAction("editGame.action");
 		return "editGame";
@@ -160,7 +161,7 @@ public class GamesAction extends ActionSupport {
 	public void setDeletedGame(String deletedGame) {
 		this.deletedGame = deletedGame;
 	}
-	
+
 	private boolean validateGameInfo() {
 		boolean allCorrect = true;
 		if (StringUtils.isBlank(game.getName())) {
@@ -172,13 +173,12 @@ public class GamesAction extends ActionSupport {
 					getText("errors.required.game.description"));
 			allCorrect = false;
 		}
-		
-		if(StringUtils.isBlank(game.getType())){
-			addFieldError("game.type",
-					getText("errors.required.game.type"));
-			allCorrect = false;	
+
+		if (StringUtils.isBlank(game.getType())) {
+			addFieldError("game.type", getText("errors.required.game.type"));
+			allCorrect = false;
 		}
-		
+
 		return allCorrect;
 	}
 }
