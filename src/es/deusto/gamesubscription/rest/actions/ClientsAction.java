@@ -156,6 +156,10 @@ public class ClientsAction extends ActionSupport {
 	//TODO:aritzbilbao. Sigue este como patron para validar tanto juegos como subscripciones
 	private boolean validateClientInfo() {
 		boolean allCorrect = true;
+		if (StringUtils.isBlank(client.getDni())) {
+			addFieldError("client.dni", getText("errors.required.client.dni"));
+			allCorrect = false;
+		}
 		if (StringUtils.isBlank(client.getName())) {
 			addFieldError("client.name", getText("errors.required.client.name"));
 			allCorrect = false;
