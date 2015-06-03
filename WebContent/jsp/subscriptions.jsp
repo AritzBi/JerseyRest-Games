@@ -56,6 +56,10 @@
 		        </tr>
 		    </s:iterator>
 		</table>
+		
+		<div class="footer">
+			<s:a action="games"><s:text name="back.games" /></s:a>
+		</div>
 
 	</body>
 </html>

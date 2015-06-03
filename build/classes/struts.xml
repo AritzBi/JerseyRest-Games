@@ -96,7 +96,7 @@
         </action>
         
         <action name="deleteClient" class="es.deusto.gamesubscription.rest.actions.ClientsAction" method="delete">
-        	<result>/jsp/clients.jsp</result>
+        	<result type="redirectAction">clients</result>
         </action>
         <action name="*" >
 			<result>/jsp/{1}.jsp</result>

@@ -50,5 +50,9 @@
 		    </s:iterator>
 		</table>
 
+		<div class="footer">
+			<s:a action="index"><s:text name="back.home" /></s:a>
+		</div>
+		
 	</body>
 </html>

@@ -19,19 +19,19 @@
 	<s:hidden name="game.id" value="%{game.id}" />
 	
     <s:textfield
-            label="Name"
+            label="%{getText('label.game.name')}"
             name="game.name" value="%{game.name}" />
 
     <s:textfield
-            label="Description"
+            label="%{getText('label.game.description')}"
             name="game.description" value="%{game.description}" />
 
     <s:textfield
-            label="Type"
+            label="%{getText('label.game.type')}"
             name="game.type" value="%{game.type}" />
             
     <s:textfield
-            label="Age"
+            label="%{getText('label.game.age')}"
             name="game.age" value="%{game.age}"/>
             
     <s:submit cssClass="btn btn-primary" value="%{getText('button.label.submit')}" />
